@@ -1,0 +1,2 @@
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\AutomatumaperContent\obj\x86\Debug\CellularAutomatumMapGeneration.contentprojResolveAssemblyReference.cache
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\AutomatumaperContent\obj\x86\Debug\CellularAutomatumMapGeneration.contentprojResolveAssemblyReference.cache

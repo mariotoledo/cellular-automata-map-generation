@@ -1,0 +1,17 @@
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\bin\x86\Debug\Content\hero.xnb
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\bin\x86\Debug\Content\tile1.xnb
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\bin\x86\Debug\Content\tile2.xnb
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\bin\x86\Debug\Automatumaper.exe
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\bin\x86\Debug\Automatumaper.pdb
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\obj\x86\Debug\Automatumaper.exe
+C:\Users\Mario\Documents\Visual Studio 2010\Projects\Automatumaper\Automatumaper\Automatumaper\obj\x86\Debug\Automatumaper.pdb
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\bin\x86\Debug\Content\hero.xnb
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\bin\x86\Debug\Content\tile1.xnb
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\bin\x86\Debug\Content\tile2.xnb
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\bin\x86\Debug\Automatumaper.exe
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\bin\x86\Debug\Automatumaper.pdb
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\obj\x86\Debug\CellularAutomatumMapGeneration].csprojResolveAssemblyReference.cache
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\obj\x86\Debug\Automatumaper.exe
+C:\Users\Mario\Documents\GitHub\CellularAutomatumMapGeneration\Automatumaper\Automatumaper\obj\x86\Debug\Automatumaper.pdb

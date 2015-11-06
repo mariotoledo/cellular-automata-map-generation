@@ -142,12 +142,22 @@ namespace Automatumaper.Models
 
         public void OnNoneKeyWasPressed()
         {
-            
+            if(!isMoving)
+                frame.X = 0;
         }
 
         public override Vector2 GetPositon()
         {
             return position;
+        }
+
+
+        public void OnPageUpWasPressed()
+        {
+        }
+
+        public void OnPageDownWasPressed()
+        {
         }
     }
 }

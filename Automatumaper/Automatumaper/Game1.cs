@@ -35,11 +35,12 @@ namespace Automatumaper
             map = new Map(this.Content);
 
             hero = new Hero(Settings.TILE_WIDTH, Settings.TILE_HEIGHT, map.starterTile);
-            InputController.Instance.AddControllable(hero);
-
             dungeonController = new DungeonController(map, hero);
 
             camera = new Camera2D();
+
+            InputController.Instance.AddControllable(hero);
+            InputController.Instance.AddControllable(camera);
 
             base.Initialize();
         }

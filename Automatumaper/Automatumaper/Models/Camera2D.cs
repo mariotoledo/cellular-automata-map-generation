@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Automatumaper.Interfaces;
 
 namespace Automatumaper.Models
 {
-    public class Camera2D
+    public class Camera2D : InputControllable
     {
         protected float _zoom;
         public Matrix _transform;
@@ -17,7 +18,7 @@ namespace Automatumaper.Models
         public float Zoom
         {
             get { return _zoom; }
-            set { _zoom = value; if (_zoom < 0.1f) _zoom = 0.1f; }
+            set { _zoom = value; }
         }
 
         public float Rotation
@@ -52,6 +53,36 @@ namespace Automatumaper.Models
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                                          Matrix.CreateTranslation(new Vector3(viewportWidth * 0.5f, viewportHeight * 0.5f, 0));
             return _transform;
+        }
+
+        public void OnDownArrowWasPressed()
+        {
+        }
+
+        public void OnUpArrowWasPressed()
+        {
+        }
+
+        public void OnRightArrowWasPressed()
+        {
+        }
+
+        public void OnLeftArrowWasPressed()
+        {
+        }
+
+        public void OnNoneKeyWasPressed()
+        {
+        }
+
+        public void OnPageUpWasPressed()
+        {
+            Zoom += 0.01f;
+        }
+
+        public void OnPageDownWasPressed()
+        {
+            Zoom -= 0.01f;
         }
     }
 }

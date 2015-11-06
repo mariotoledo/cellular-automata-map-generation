@@ -15,5 +15,7 @@ namespace Automatumaper
 
         public static int TILE_WIDTH = 64;
         public static int TILE_HEIGHT = 64;
+
+        public static float AUTOMATA_CHANCE_TO_STAY_ALIVE = 0.45f;
     }
 }

@@ -12,5 +12,7 @@ namespace Automatumaper.Interfaces
         void OnRightArrowWasPressed();
         void OnLeftArrowWasPressed();
         void OnNoneKeyWasPressed();
+        void OnPageUpWasPressed();
+        void OnPageDownWasPressed();
     }
 }

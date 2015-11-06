@@ -72,6 +72,19 @@ namespace Automatumaper.Controllers
                     controllable.OnRightArrowWasPressed();
                 }
             }
+            else if (currentKeybordState.IsKeyDown(Keys.PageUp)){
+                foreach (InputControllable controllable in controllables)
+                {
+                    controllable.OnPageUpWasPressed();
+                }
+            }
+            else if (currentKeybordState.IsKeyDown(Keys.PageDown))
+            {
+                foreach (InputControllable controllable in controllables)
+                {
+                    controllable.OnPageDownWasPressed();
+                }
+            }
             else
             {
                 foreach (InputControllable controllable in controllables)

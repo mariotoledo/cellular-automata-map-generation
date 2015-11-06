@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="Controllers\DungeonController.cs" />
     <Compile Include="Controllers\InputController.cs" />
-    <Compile Include="Controllers\PhisicsController.cs" />
     <Compile Include="Interfaces\InputControllable.cs" />
     <Compile Include="Models\Camera2D.cs" />
     <Compile Include="Models\Hero.cs" />

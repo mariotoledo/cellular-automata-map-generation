@@ -23,7 +23,6 @@ namespace Automatumaper
         Map map;
 
         DungeonController dungeonController;
-        PhisicsController phisicsController;
 
         public Game1()
         {

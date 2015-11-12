@@ -31,7 +31,7 @@ namespace Automatumaper.Models
                 }
             }
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < Settings.GAME_OF_LIFE_NUMBER_OF_STEPS; i++)
             {
                 map = GameOfLifeHelper.DoTransitionFromOldMap(map);
             }

@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DungeonController.cs" />
     <Compile Include="Controllers\InputController.cs" />
+    <Compile Include="Helpers\GameOfLifeHelper.cs" />
     <Compile Include="Helpers\NumericHelper.cs" />
     <Compile Include="Interfaces\InputControllable.cs" />
     <Compile Include="Models\Camera2D.cs" />

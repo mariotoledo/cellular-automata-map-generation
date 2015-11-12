@@ -17,5 +17,7 @@ namespace Automatumaper
         public static int TILE_HEIGHT = 64;
 
         public static float AUTOMATA_CHANCE_TO_STAY_ALIVE = 0.45f;
+        public static int AUTOMATA_NUMBER_OF_ALIVE_NEIGHBORS_ALLOWED = 3;
+        public static int AUTOMATA_NUMBER_OF_DEAD_NEIGHBORS_ALLOWED = 3;
     }
 }

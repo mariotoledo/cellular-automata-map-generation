@@ -31,6 +31,11 @@ namespace Automatumaper.Models
                 }
             }
 
+            for (int i = 0; i < 6; i++)
+            {
+                map = GameOfLifeHelper.DoTransitionFromOldMap(map);
+            }
+
             Tiles = new Tile[map.GetLength(1), map.GetLength(0)];
 
             for (int y = 0; y < map.GetLength(0); y++)

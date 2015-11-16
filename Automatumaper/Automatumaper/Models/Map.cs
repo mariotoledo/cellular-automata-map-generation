@@ -45,8 +45,8 @@ namespace Automatumaper.Models
                     Tile tile = new Tile()
                     {
                         Frame = new Rectangle(x * Settings.TILE_WIDTH, y * Settings.TILE_HEIGHT, Settings.TILE_WIDTH, Settings.TILE_HEIGHT),
-                        IsWalkable = map[y, x] == 0 || map[y, x] == 2,
-                        Texture = contentManager.Load<Texture2D>(map[y, x] == 0 || map[y, x] == 2  ? "tile1" : "tile2"),
+                        IsWalkable = map[y, x] == 0,
+                        Texture = contentManager.Load<Texture2D>(map[y, x] == 0 ? "tile1" : "tile2"),
                         MapPosition = new Vector2(x, y)
                     };
 

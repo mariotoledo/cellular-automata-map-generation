@@ -11,14 +11,14 @@ namespace Automatumaper.Models
 {
     public class Map
     {
-        public Tile starterTile { get; set; }
-
-        private int[,] map = new int[100, 100];
+        public Tile StarterTile { get; set; }
 
         public Tile[,] Tiles { get; private set; }
 
         public Map(ContentManager contentManager)
         {
+            int[,] map = new int[100, 100];
+
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
@@ -50,11 +50,18 @@ namespace Automatumaper.Models
                         MapPosition = new Vector2(x, y)
                     };
 
-                    if (map[y, x] == 0)
-                        starterTile = tile;
-
                     Tiles[x, y] = tile;
                 }
+            }
+
+            while (StarterTile == null)
+            {
+                int randX =  (int)Math.Floor((new Random().NextDouble() * map.GetLength(0)));
+                int randY = (int)Math.Floor((new Random().NextDouble() * map.GetLength(1)));
+
+                if (GameOfLifeHelper.GetMooreNeighborsAlive(randX, randY, map) >= Settings.GOOD_NUMBER_OF_ALIVE_CELLS_TO_BE_A_CAVE &&
+                    Tiles[randX, randY].IsWalkable)
+                    StarterTile = Tiles[randX, randY];
             }
 
             for (int x = 0; x < Tiles.GetLength(0); x++)

@@ -34,7 +34,7 @@ namespace Automatumaper
         {
             map = new Map(this.Content);
 
-            hero = new Hero(Settings.TILE_WIDTH, Settings.TILE_HEIGHT, map.starterTile);
+            hero = new Hero(Settings.TILE_WIDTH, Settings.TILE_HEIGHT, map.StarterTile);
             dungeonController = new DungeonController(map, hero);
 
             camera = new Camera2D();
@@ -70,7 +70,7 @@ namespace Automatumaper
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,

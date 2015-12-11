@@ -20,5 +20,7 @@ namespace Automatumaper
         public static int AUTOMATA_NUMBER_OF_ALIVE_NEIGHBORS_ALLOWED = 3;
         public static int AUTOMATA_NUMBER_OF_DEAD_NEIGHBORS_ALLOWED = 3;
         public static int GAME_OF_LIFE_NUMBER_OF_STEPS = 6;
+
+        public static int GOOD_NUMBER_OF_ALIVE_CELLS_TO_BE_A_CAVE = 4;
     }
 }

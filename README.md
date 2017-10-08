@@ -7,7 +7,7 @@ This project uses Moore's Game of Life to generate random maps in a dungeon craw
 While fantasy RPGs are already a genre division in the eletronic gaming universe, there are sub-genres that greatly changes the mechanics of a game. Among them, dungeon crawlers, which consists of controlling heroes through a maze inside a dungeon made of rooms connected by corridors.
 
 <p align="center">
-	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/chocobodungeon.jpg" style="width: 100%"/><br/>
+	<img alt="In the left: Diablo 1, one of the successful games of its kin. In the right: Chobobo's Dungeon, for Playstation 1" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/chocobodungeon.jpg" style="width: 100%"/><br/>
 	<i>In the left: Diablo 1, one of the successful games of its kin. In the right: Chobobo's Dungeon, for Playstation 1</i>
 </p>
 
@@ -25,7 +25,7 @@ For two-dimensional cellular automata, the best known model was the one develope
 3. Any dead cell with exactly three living neighbors becomes a living cell;
 
 <p align="center">
-	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/jogoDaVida.jpg" style="width: 100%"/><br/>
+	<img alt="Cells evolving in an implementation of the Game of Life" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/jogoDaVida.jpg" style="width: 100%"/><br/>
 	<i>Cells evolving in an implementation of the Game of Life</i>
 </p>
 
@@ -33,7 +33,7 @@ The evolution of a cell into a cellular automaton depends on its neighborhood, c
 
 
 <p align="center">
-	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/moore.jpg" style="width: 100%"/><br/>
+	<img alt="Moore's model" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/moore.jpg"/><br/>
 	<i>Moore's model</i>
 </p>
 
@@ -98,3 +98,129 @@ The Map class is responsible for generating the Dungeon Map and loading informat
         }
 	}
 ```
+
+When we run the project, we have a base structure that allows us to focus on the implementation of map generation based on the Game of Life rules.
+
+<p align="center">
+	<img alt="Basic structure for map generation" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/primeiroMapa.jpg"/><br/>
+</p>
+
+### Applying Cellular Automata and The Game of Life rules in the project
+At first, our map structure is managed by an array of integers, where elements of values ​​0 indicate non-walking tiles, while elements of values ​​1 indicate walkable tiles.
+The application of the rules of the game of life suggests an initial configuration. To do this, our first step in dungeon generation is to create a random map, and to do so, we assign a chance for each cell to become a "walkable" element. That is, the chance of each cell being a "living" cell.
+
+```C#
+	public static float AUTOMATA_CHANCE_TO_STAY_ALIVE = 0.45f;
+```
+
+With this, we generate random values ​​from 0 to 1, and assign a "live" or "dead" value to each map cell.
+
+```C#
+	for (int x = 0; x < map.GetLength(0); x++)
+    {
+        for (int y = 0; y < map.GetLength(1); y++)
+        {
+            double r = new Random().NextDouble();
+            if (NumericHelper.GetRandomNumber() < Settings.AUTOMATA_CHANCE_TO_STAY_ALIVE)
+            {
+                map[y, x] = 1;
+            }
+        }
+    }
+```
+
+By running the project, we can see that the map contains scattered elements without any kind of pattern.
+
+<p align="center">
+	<img alt="Map generated randomsly, but without rules of life" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/mapaAleatorioSemZoom.jpg"/><br/>
+</p>
+
+<p align="center">
+	<img alt="Map generated randomsly, but without rules of life" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/mapaAleatorioComZoom.jpg" widtn="100%"/><br/>
+</p>
+
+From the map generated above, we can apply the rules of the game of life to generate new cells. For this, we first need to create a way to identify living or dead cells that are neighbors to a given cell. In our code, we created a class called *GameOfLifeHelper* to focus methods that will allow to apply the rules of the game of life to our map. In this way, we created a method called *GetMooreNeighborsAlive*, which counts the number of live cells around a unique position of the map and the actual map itself.
+
+```C#
+	public static int GetMooreNeighborsAlive(int x, int y, int [,] map){
+        int numberOfAliveNearbyCells = 0;
+
+        for(int i = -1; i < 2; i++){
+            for(int j = -1; j < 2; j++){
+                int nearbyX = x + i;
+                int nearbyY = y + j;
+
+                if(i == 0 && j == 0){
+                    break;
+                } else if(nearbyX < 0 || nearbyY < 0 || nearbyX >= map.GetLength(0) || nearbyY >= map.GetLength(1)){
+                    numberOfAliveNearbyCells++;
+                } else if(map[nearbyX, nearbyY] == 1){
+                    numberOfAliveNearbyCells++;
+                }
+            }
+        }
+
+        return numberOfAliveNearbyCells;
+    }
+```
+
+Now that we can count the neighboring living cells, we can apply the transition rules. In the Game of Life, the cells are changed simultaneously, from n iterations. For this to happen, in our *DoTransitionFromOldMap* method, we apply the rules from a map reference without changes.
+
+```C#
+	public static int[,] DoTransitionFromOldMap(int[,] oldMap)
+    {
+        int[,] newMap = new int[oldMap.GetLength(0), oldMap.GetLength(1)];
+        for (int x = 0; x < oldMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < oldMap.GetLength(1); y++)
+            {
+                int numberOfAliveCells = GetMooreNeighborsAlive(x, y, oldMap);
+
+                if(oldMap[x, y] == 1){
+                    if (numberOfAliveCells < Settings.AUTOMATA_NUMBER_OF_ALIVE_NEIGHBORS_ALLOWED)
+                    {
+                        newMap[x, y] = 1;
+                    }
+                    else{
+                        newMap[x, y] = 0;
+                    }
+                }
+                else{
+                    if (numberOfAliveCells > Settings.AUTOMATA_NUMBER_OF_DEAD_NEIGHBORS_ALLOWED)
+                    {
+                        newMap[x, y] = 0;
+                    }
+                    else{
+                        newMap[x, y] = 1;
+                    }
+                }
+            }
+        }
+        return newMap;
+    }
+```
+
+In our project, we have defined a total number of iterations that will occur on the map.
+
+```C#
+	public static int GAME_OF_LIFE_NUMBER_OF_STEPS	 = 6;
+```
+
+Next, we make a loop that will make the interactions on the map.
+
+```C#
+	for (int i = 0; i < Settings.GAME_OF_LIFE_NUMBER_OF_STEPS; i++)
+    {
+        map = GameOfLifeHelper.DoTransitionFromOldMap(map);
+    }
+```
+
+After running project, we have a map composed of cells grouped in greater quantities, like small caves of a single floor of the dungeon. With a greater number of interactions, we managed to leave these caves bigger and smaller paths between the map.
+
+<p align="center">
+	<img alt="Random map generated by cellular automata" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/mapaAutomato1.jpg"/><br/>
+</p>
+
+<p align="center">
+	<img alt="Random map generated by cellular automata" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/mapaAutomato2.jpg" widtn="100%"/><br/>
+</p>

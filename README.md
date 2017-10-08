@@ -37,7 +37,7 @@ For the generation of the map, the class Tile was created to store information o
 
 The Map class is responsible for generating the Dungeon Map and loading information for each Tile. The primary structure of the map is composed of an array of integers, which indicates the state of each Tile. This will allow to identify if a Tile is "walkable" or not (in the future, we can assign other states).
 
-`
+```C#
     public class Map
     {
     	private int[,] map = {
@@ -90,4 +90,4 @@ The Map class is responsible for generating the Dungeon Map and loading informat
             }
         }
 	}
-`
+```

@@ -7,8 +7,8 @@ This project uses Moore's Game of Life to generate random maps in a dungeon craw
 While fantasy RPGs are already a genre division in the eletronic gaming universe, there are sub-genres that greatly changes the mechanics of a game. Among them, dungeon crawlers, which consists of controlling heroes through a maze inside a dungeon made of rooms connected by corridors.
 
 <p align="center">
-![In the left: Diablo 1, one of the successful games of its kin. In the right: Chobobo's Dungeon, for Playstation 1](http://mariotoledo.github.io/cellular-automata-map-generation/docs/chocobodungeon.jpg)<br/>
-*In the left: Diablo 1, one of the successful games of its kin. In the right: Chobobo's Dungeon, for Playstation 1*
+	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/chocobodungeon.jpg" style="width: 100%"/><br/>
+	<i>In the left: Diablo 1, one of the successful games of its kin. In the right: Chobobo's Dungeon, for Playstation 1</i>
 </p>
 
 It is common that in Dungeon Crawler games, the player is unaware of the map that he is entering for the first time. The dungeons have several levels, and at each level, the player must become familiar with the place.
@@ -25,15 +25,16 @@ For two-dimensional cellular automata, the best known model was the one develope
 3. Any dead cell with exactly three living neighbors becomes a living cell;
 
 <p align="center">
-![Cells evolving in an implementation of the Game of Life](http://mariotoledo.github.io/cellular-automata-map-generation/docs/jogoDaVida.jpg)<br/>
-*Cells evolving in an implementation of the Game of Life*
+	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/jogoDaVida.jpg" style="width: 100%"/><br/>
+	<i>Cells evolving in an implementation of the Game of Life</i>
 </p>
 
 The evolution of a cell into a cellular automaton depends on its neighborhood, composed of cells adjacent to the current cell and the cell itself. The Game of Life uses the model of Moore, in which the neighboring cells are always the 8 cells are around a certain cell.
 
+
 <p align="center">
-![Moore's model](http://mariotoledo.github.io/cellular-automata-map-generation/docs/moore.jpg)<br/>
-*Moore's model*
+	<img src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/moore.jpg" style="width: 100%"/><br/>
+	<i>Moore's model</i>
 </p>
 
 ## The Project

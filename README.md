@@ -45,58 +45,58 @@ For the generation of the map, the class Tile was created to store information o
 The Map class is responsible for generating the Dungeon Map and loading information for each Tile. The primary structure of the map is composed of an array of integers, which indicates the state of each Tile. This will allow to identify if a Tile is "walkable" or not (in the future, we can assign other states).
 
 ```C#
-    public class Map
+public class Map
+{
+	private int[,] map = {
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 9, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},};
+
+    public Tile[,] Tiles { get; private set; 
+
+    public Map(ContentManager contentManager)
     {
-    	private int[,] map = {
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 9, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},};
+        Tiles = new Tile[map.GetLength(1), map.GetLength(0)];
 
-        public Tile[,] Tiles { get; private set; 
-
-        public Map(ContentManager contentManager)
+        for (int y = 0; y < map.GetLength(0); y++)
         {
-            Tiles = new Tile[map.GetLength(1), map.GetLength(0)];
-
-            for (int y = 0; y < map.GetLength(0); y++)
+            for (int x = 0; x < map.GetLength(1); x++)
             {
-                for (int x = 0; x < map.GetLength(1); x++)
+                Tile tile = new Tile()
                 {
-                    Tile tile = new Tile()
-                    {
-                        Frame = new Rectangle(x * Settings.TILE_WIDTH, y * Settings.TILE_HEIGHT, Settings.TILE_WIDTH, Settings.TILE_HEIGHT),
-                        IsWalkable = map[y, x] == 0 || map[y, x] == 2,
-                        Texture = contentManager.Load<Texture2D>(map[y, x] == 0 || map[y, x] == 2  ? "tile1" : "tile2"),
-                        MapPosition = new Vector2(x, y)
-                    };
+                    Frame = new Rectangle(x * Settings.TILE_WIDTH, y * Settings.TILE_HEIGHT, Settings.TILE_WIDTH, Settings.TILE_HEIGHT),
+                    IsWalkable = map[y, x] == 0 || map[y, x] == 2,
+                    Texture = contentManager.Load<Texture2D>(map[y, x] == 0 || map[y, x] == 2  ? "tile1" : "tile2"),
+                    MapPosition = new Vector2(x, y)
+                };
 
-                    if (map[y, x] == 2)
-                        starterTile = tile;
+                if (map[y, x] == 2)
+                    starterTile = tile;
 
-                    Tiles[x, y] = tile;
-                }
+                Tiles[x, y] = tile;
             }
         }
-	}
+    }
+}
 ```
 
 When we run the project, we have a base structure that allows us to focus on the implementation of map generation based on the Game of Life rules.
@@ -110,23 +110,23 @@ At first, our map structure is managed by an array of integers, where elements o
 The application of the rules of the game of life suggests an initial configuration. To do this, our first step in dungeon generation is to create a random map, and to do so, we assign a chance for each cell to become a "walkable" element. That is, the chance of each cell being a "living" cell.
 
 ```C#
-	public static float AUTOMATA_CHANCE_TO_STAY_ALIVE = 0.45f;
+public static float AUTOMATA_CHANCE_TO_STAY_ALIVE = 0.45f;
 ```
 
 With this, we generate random values ​​from 0 to 1, and assign a "live" or "dead" value to each map cell.
 
 ```C#
-	for (int x = 0; x < map.GetLength(0); x++)
+for (int x = 0; x < map.GetLength(0); x++)
+{
+    for (int y = 0; y < map.GetLength(1); y++)
     {
-        for (int y = 0; y < map.GetLength(1); y++)
+        double r = new Random().NextDouble();
+        if (NumericHelper.GetRandomNumber() < Settings.AUTOMATA_CHANCE_TO_STAY_ALIVE)
         {
-            double r = new Random().NextDouble();
-            if (NumericHelper.GetRandomNumber() < Settings.AUTOMATA_CHANCE_TO_STAY_ALIVE)
-            {
-                map[y, x] = 1;
-            }
+            map[y, x] = 1;
         }
     }
+}
 ```
 
 By running the project, we can see that the map contains scattered elements without any kind of pattern.
@@ -142,77 +142,77 @@ By running the project, we can see that the map contains scattered elements with
 From the map generated above, we can apply the rules of the game of life to generate new cells. For this, we first need to create a way to identify living or dead cells that are neighbors to a given cell. In our code, we created a class called *GameOfLifeHelper* to focus methods that will allow to apply the rules of the game of life to our map. In this way, we created a method called *GetMooreNeighborsAlive*, which counts the number of live cells around a unique position of the map and the actual map itself.
 
 ```C#
-	public static int GetMooreNeighborsAlive(int x, int y, int [,] map){
-        int numberOfAliveNearbyCells = 0;
+public static int GetMooreNeighborsAlive(int x, int y, int [,] map){
+    int numberOfAliveNearbyCells = 0;
 
-        for(int i = -1; i < 2; i++){
-            for(int j = -1; j < 2; j++){
-                int nearbyX = x + i;
-                int nearbyY = y + j;
+    for(int i = -1; i < 2; i++){
+        for(int j = -1; j < 2; j++){
+            int nearbyX = x + i;
+            int nearbyY = y + j;
 
-                if(i == 0 && j == 0){
-                    break;
-                } else if(nearbyX < 0 || nearbyY < 0 || nearbyX >= map.GetLength(0) || nearbyY >= map.GetLength(1)){
-                    numberOfAliveNearbyCells++;
-                } else if(map[nearbyX, nearbyY] == 1){
-                    numberOfAliveNearbyCells++;
-                }
+            if(i == 0 && j == 0){
+                break;
+            } else if(nearbyX < 0 || nearbyY < 0 || nearbyX >= map.GetLength(0) || nearbyY >= map.GetLength(1)){
+                numberOfAliveNearbyCells++;
+            } else if(map[nearbyX, nearbyY] == 1){
+                numberOfAliveNearbyCells++;
             }
         }
-
-        return numberOfAliveNearbyCells;
     }
+
+    return numberOfAliveNearbyCells;
+}
 ```
 
 Now that we can count the neighboring living cells, we can apply the transition rules. In the Game of Life, the cells are changed simultaneously, from n iterations. For this to happen, in our *DoTransitionFromOldMap* method, we apply the rules from a map reference without changes.
 
 ```C#
-	public static int[,] DoTransitionFromOldMap(int[,] oldMap)
+public static int[,] DoTransitionFromOldMap(int[,] oldMap)
+{
+    int[,] newMap = new int[oldMap.GetLength(0), oldMap.GetLength(1)];
+    for (int x = 0; x < oldMap.GetLength(0); x++)
     {
-        int[,] newMap = new int[oldMap.GetLength(0), oldMap.GetLength(1)];
-        for (int x = 0; x < oldMap.GetLength(0); x++)
+        for (int y = 0; y < oldMap.GetLength(1); y++)
         {
-            for (int y = 0; y < oldMap.GetLength(1); y++)
-            {
-                int numberOfAliveCells = GetMooreNeighborsAlive(x, y, oldMap);
+            int numberOfAliveCells = GetMooreNeighborsAlive(x, y, oldMap);
 
-                if(oldMap[x, y] == 1){
-                    if (numberOfAliveCells < Settings.AUTOMATA_NUMBER_OF_ALIVE_NEIGHBORS_ALLOWED)
-                    {
-                        newMap[x, y] = 1;
-                    }
-                    else{
-                        newMap[x, y] = 0;
-                    }
+            if(oldMap[x, y] == 1){
+                if (numberOfAliveCells < Settings.AUTOMATA_NUMBER_OF_ALIVE_NEIGHBORS_ALLOWED)
+                {
+                    newMap[x, y] = 1;
                 }
                 else{
-                    if (numberOfAliveCells > Settings.AUTOMATA_NUMBER_OF_DEAD_NEIGHBORS_ALLOWED)
-                    {
-                        newMap[x, y] = 0;
-                    }
-                    else{
-                        newMap[x, y] = 1;
-                    }
+                    newMap[x, y] = 0;
+                }
+            }
+            else{
+                if (numberOfAliveCells > Settings.AUTOMATA_NUMBER_OF_DEAD_NEIGHBORS_ALLOWED)
+                {
+                    newMap[x, y] = 0;
+                }
+                else{
+                    newMap[x, y] = 1;
                 }
             }
         }
-        return newMap;
     }
+    return newMap;
+}
 ```
 
 In our project, we have defined a total number of iterations that will occur on the map.
 
 ```C#
-	public static int GAME_OF_LIFE_NUMBER_OF_STEPS	 = 6;
+public static int GAME_OF_LIFE_NUMBER_OF_STEPS	 = 6;
 ```
 
 Next, we make a loop that will make the interactions on the map.
 
 ```C#
-	for (int i = 0; i < Settings.GAME_OF_LIFE_NUMBER_OF_STEPS; i++)
-    {
-        map = GameOfLifeHelper.DoTransitionFromOldMap(map);
-    }
+for (int i = 0; i < Settings.GAME_OF_LIFE_NUMBER_OF_STEPS; i++)
+{
+    map = GameOfLifeHelper.DoTransitionFromOldMap(map);
+}
 ```
 
 After running project, we have a map composed of cells grouped in greater quantities, like small caves of a single floor of the dungeon. With a greater number of interactions, we managed to leave these caves bigger and smaller paths between the map.
@@ -224,3 +224,15 @@ After running project, we have a map composed of cells grouped in greater quanti
 <p align="center">
 	<img alt="Random map generated by cellular automata" src="http://mariotoledo.github.io/cellular-automata-map-generation/docs/mapaAutomato2.jpg" widtn="100%"/><br/>
 </p>
+
+## Development
+There are several ways to help improve this project. Although the generation of random maps is possible with the use of cellular automata, many of the "caves" of the map are not interconnected. It is necessary to implement a way to identify caves, and from there, identify the caves that are not connected.
+
+With the identification of caves, it is easy to insert enemies on the map. It is also suggested to insert start and end points on the map in such a way that these cells reach the maximum possible distance within the screen.
+
+## References
+
+[1] AGUIAR, M. S. de; ROCHA COSTA, A. C. da. Automatos celulares para análise da monotonicidade da declividade de áreas geológicas. , [S.l.], 2001.
+[2] Gardner, Marin - MATHEMATICAL GAMES The fantastic combinations of John Conway's new solitaire game "life"
+[3] http://ppginf.ucpel.tche.br/TI-arquivos/2007/PPGINF-UCPel-TI-2007-2-01.pdf
+[4] http://blog.monnet-usa.com/?cat=18
